@@ -20,9 +20,28 @@ def read_data(file_name, field):
         data = json.load(json_file)
     return data[field]
 
+
+def linear_search(unordered_numbers, number):
+    index = 0
+    position = []
+    pocet_vyskytu = 0
+    for numbers in unordered_numbers:
+        if numbers == number:
+            position.append(index)
+            pocet_vyskytu += 1
+        index += 1
+
+    slovnik = {"positions":position, "count":pocet_vyskytu}
+    return slovnik
+
+
+
 def main():
     unordered_numbers = read_data("sequential.json", "unordered_numbers")
     print(unordered_numbers)
+    number = 9
+    final_dictionary = linear_search(unordered_numbers, number)
+    print(final_dictionary)
 
 
 if __name__ == '__main__':
