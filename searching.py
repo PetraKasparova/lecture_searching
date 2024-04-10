@@ -44,30 +44,41 @@ def linear_search(unordered_numbers, number):
 def pattern_search(dna_sequence, find_pattern):
     """
     Finds index of position of finding pattern
-    :param dna_sequence:(str), loaded dna sequence
-    :param find_pattern:(str), pattern to be found
-    :return:(set), count of founded patterns
+    :param dna_sequence: (str), loaded dna sequence
+    :param find_pattern: (str), pattern to be found
+    :return: (set), count of founded patterns
     """
-    index = 0
+    sequence_index = 0
     pattern_lenght = len(find_pattern)
     count_of_patterns = set()
-    while index < len(dna_sequence) - (len(find_pattern) + 1):
-        if dna_sequence[index:index + pattern_lenght] == find_pattern:
-            count_of_patterns.add(index + (pattern_lenght//2))
-        index += 1
+    m = len(find_pattern)
+    while sequence_index < len(dna_sequence) - (len(find_pattern) + 1):
+        pattern_index = 0
+        while pattern_index < m:
+            if dna_sequence[sequence_index + pattern_index] != find_pattern[pattern_index]:
+                break
+            pattern_index += 1
+
+        if pattern_index == m:
+            count_of_patterns.add(sequence_index + (pattern_lenght//2))
+        sequence_index += 1
+
+
     return count_of_patterns
 
 
 def main():
     unordered_numbers = read_data("sequential.json", "unordered_numbers")
     print(unordered_numbers)
+
     number = 9
     final_dictionary = linear_search(unordered_numbers, number)
     print(final_dictionary)
+
     dna_sequence = read_data("sequential.json",  "dna_sequence")
     find_pattern = "ATA"
-    searching_patter = pattern_search(dna_sequence, find_pattern)
-    print(searching_patter)
+    searching_pattern = pattern_search(dna_sequence, find_pattern)
+    print(searching_pattern)
 
 
 if __name__ == '__main__':
