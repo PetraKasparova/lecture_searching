@@ -22,6 +22,12 @@ def read_data(file_name, field):
 
 
 def linear_search(unordered_numbers, number):
+    """
+    Creates dictionary of position and count of number
+    :param unordered_numbers: (list), list of loaded data
+    :param number: (int), number to be found
+    :return: (dict), dictionary of position and count of number
+    """
     index = 0
     position = []
     pocet_vyskytu = 0
